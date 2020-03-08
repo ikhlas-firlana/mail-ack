@@ -1,2 +1,2 @@
 # mail-ack
-Lumens with rabbitMQ
+Lumens with rabbitMQ. Create Mail Queue Process.
