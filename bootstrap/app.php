@@ -21,7 +21,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades(true, [
+    'Illuminate\Support\Facades\Mail' => 'Mail',
+]);
 
 // $app->withEloquent();
 
@@ -75,10 +77,16 @@ $app->singleton(
 | totally optional, so you are not required to uncomment this line.
 |
 */
-
+$app->register(Illuminate\Mail\MailServiceProvider::class);
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+
+// setup the mail
+$app->configure('mail');
+$app->alias('mailer', Illuminate\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 
 /*
 |--------------------------------------------------------------------------
